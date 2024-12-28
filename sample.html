@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Route Map Sync</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        async function calculateRoute() {
+            const locations = document.getElementById('locations').value.split('\n');
+            const response = await fetch('http://127.0.0.1:5000/api/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ locations: locations })
+            });
+            const data = await response.json();
+            displayResults(data);
+        }
+
+        function displayResults(data) {
+            const resultsTable = document.getElementById('results-table');
+            resultsTable.innerHTML = `
+                <tr>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Distance</th>
+                    <th>Time</th>
+                </tr>
+            `;
+            data.results.forEach(result => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${result.origin_name}</td>
+                    <td>${result.destination_name}</td>
+                    <td>${result.distance}</td>
+                    <td>${result.duration}</td>
+                `;
+                resultsTable.appendChild(row);
+            });
+            document.getElementById('total-distance').innerText = `Total Distance: ${data.total_distance}`;
+            document.getElementById('total-time').innerText = `Total Time: ${data.total_time}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Route Map Sync</h1>
+        <textarea id="locations" rows="10" placeholder="Enter locations, one per line..."></textarea><br>
+        <button onclick="calculateRoute()">Calculate</button>
+        <table id="results-table"></table>
+        <pre id="total-distance"></pre>
+        <pre id="total-time"></pre>
+    </div>
+</body>
+</html>

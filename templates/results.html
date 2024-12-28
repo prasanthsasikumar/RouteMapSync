@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Route Map Sync - Results</title>
+</head>
+<body>
+    <h1>Route Map Sync - Results</h1>
+    <table border="1">
+        <tr>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Distance</th>
+            <th>Time</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result[0] }}</td>
+            <td>{{ result[1] }}</td>
+            <td>{{ result[6] }}</td>
+            <td>{{ result[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Total Distance: {{ total_distance }}</h2>
+    <h2>Total Time: {{ total_time }}</h2>
+    <a href="/">Back</a>
+</body>
+</html>
