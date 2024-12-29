@@ -50,6 +50,8 @@ Route Map Sync is a Python-based application designed to help users calculate an
 
 4. View the generated HTML report and optionally upload the results to Google Sheets.
 
+![Screenshot](screenshot.png)
+
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
