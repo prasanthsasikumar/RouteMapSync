@@ -53,13 +53,13 @@ Route Map Sync is a Python-based application designed to help users calculate an
 ![Screenshot](screenshot.png)
 
 ## SSL
-1. I've used NGINX to simplify SSL
-2. Certbot to get a SSL certificate for the domain [https://theconsciousriderbackend.prasanthsasikumar.com/](https://theconsciousriderbackend.prasanthsasikumar.com/)
-3. Serves the page with Gunicorn -
+1. We are using NGINX to simplify SSL,
+2. Certbot to get a SSL certificate for the domain [https://theconsciousriderbackend.prasanthsasikumar.com/](https://theconsciousriderbackend.prasanthsasikumar.com/),
+3. We serve the page with Gunicorn -
    ```sh
    gunicorn -w 4 -b 0.0.0.0:5000 app:app
    ```
-4. My nginx config(to route traffic) and systemmd.service(for automatic restart on boot) are in the root folder
+4. Also our nginx config(to route traffic) and systemmd.service(for automatic restart on boot) are in the root folder.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
