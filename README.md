@@ -39,16 +39,20 @@ Route Map Sync is a Python-based application designed to help users calculate an
 
 
 ## Usage
-1. Run the main application:
+1. Run the main to do everything including updating the excel sheet:
     ```sh
     python main.py
     ```
+    app.py to serve the webpage and also host the POST endpoint
+   ```sh
+    python app.py
+    ```
 
-2. Open your web browser and navigate to `http://localhost:5000`.
+3. Open your web browser and navigate to `http://localhost:5000`.
 
-3. Enter the locations in the provided textarea and click "Calculate" to generate the route details.
+4. Enter the locations in the provided textarea and click "Calculate" to generate the route details.
 
-4. View the generated HTML report and optionally upload the results to Google Sheets.
+5. View the generated HTML report and optionally upload the results to Google Sheets.
 
 ![Screenshot](screenshot.png)
 
