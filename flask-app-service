@@ -1,0 +1,16 @@
+[Unit]
+Description=Flask Application
+After=network.target
+
+[Service]
+User=prasanth
+Group=prasanth
+WorkingDirectory=/home/prasanth/RouteMapSync
+ExecStart=/bin/bash -c 'source /home/prasanth/RouteMapSync/venv/bin/activate && exec gunicorn -w 4 -b 0.0.0.0:5000 app:app'
+Restart=always
+Environment="PATH=/home/prasanth/RouteMapSync/venv/bin:$PATH"
+Environment="FLASK_APP=app"
+Environment="FLASK_ENV=production"
+
+[Install]
+WantedBy=multi-user.target
